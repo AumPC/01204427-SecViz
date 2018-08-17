@@ -23,12 +23,12 @@
         var app = {};
         option = null;
         myChart.showLoading();
-        $.getJSON('convert/domestic.json', function (json) {
+        $.getJSON('convert/international.json', function (json) {
             console.log(json.nodes.length);
             myChart.hideLoading();
             myChart.setOption(option = {
                 title: {
-                    text: 'Domestic Network Map'
+                    text: 'International Network Map'
                 },
                 animationDurationUpdate: 1500,
                 animationEasingUpdate: 'quinticInOut',
@@ -62,8 +62,10 @@
                         };
                     }),
                     label: {
-                        position: 'right',
-                        formatter: '{b}'
+                        normal:{
+                            position: 'right',
+                            // show:true
+                        }
                     },
                     lineStyle: {
                         // color: 'target',
