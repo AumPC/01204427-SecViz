@@ -38,8 +38,6 @@ def init(time):
                 login_log[time_str] = {'login':0, 'logout':0}
                 last_str = last_time_str
 
-
-
 def count_log(time, user, ipv4, ipv6, is_login):
     time_str = time.strftime('%Y-%m-%d %H:%M:%S')
     
@@ -68,9 +66,9 @@ def count_log(time, user, ipv4, ipv6, is_login):
         login_log[time_str]['logout'] += 1
 
 csvfile = open('login-20170102-anon.csv', 'r')
-ipjsonfile = open('number_ip.json', 'w')
-userjsonfile = open('number_user.json', 'w')
-loginjsonfile = open('number_login.json', 'w')
+ip_jsonfile = open('ip_log.json', 'w')
+user_jsonfile = open('user_log.json', 'w')
+login_jsonfile = open('login_log.json', 'w')
 reader = csv.DictReader(csvfile,  delimiter=' ', fieldnames=['login_session_id', 'login_timestamp', 
                                                     'user', 'logout_timestamp', 'mac_address', 'ipv4', 
                                                     'ipv6', 'agent_ip', 'agent_type', 'via_ip', 'ipv4_byte_in', 
@@ -79,7 +77,7 @@ reader = csv.DictReader(csvfile,  delimiter=' ', fieldnames=['login_session_id',
                                                 ])
 
 for row in reader:
-    time = datetime.datetime.utcfromtimestamp(int(row['login_timestamp'])/1000.0)
+    time = datetime.datetime.fromtimestamp(int(row['login_timestamp'])/1000.0)
     login_time = ceil_time(time)
     time_temp = login_time.strftime('%Y-%m-%d %H:%M:%S')
     if row['logout_timestamp'] == '-' :
@@ -88,7 +86,7 @@ for row in reader:
         temp = { 'user':row['user'] }
         time_in[row['login_timestamp']] = temp
     else : 
-        time = datetime.datetime.utcfromtimestamp(int(row['logout_timestamp'])/1000.0)
+        time = datetime.datetime.fromtimestamp(int(row['logout_timestamp'])/1000.0)
         logout_time = ceil_time(time)
         if row['login_timestamp'] in time_in.keys():
             init(logout_time)
@@ -105,15 +103,15 @@ print(time_out.keys())
 
 
 
-userdata = {}
-ipdata = {}
-logindata = {}
+user_data = {}
+ip_data = {}
+login_data = {}
 
 for key in sorted(user_count):
-    ipdata[key] = ip[key]
-    userdata[key] = user_count[key]
-    logindata[key] = login_log[key]
+    ip_data[key] = ip[key]
+    user_data[key] = user_count[key]
+    login_data[key] = login_log[key]
     
-json.dump(userdata, userjsonfile)
-json.dump(ipdata, ipjsonfile)
-json.dump(logindata, loginjsonfile)
+json.dump(user_data, user_jsonfile)
+json.dump(ip_data, ip_jsonfile)
+json.dump(login_data, login_jsonfile)
