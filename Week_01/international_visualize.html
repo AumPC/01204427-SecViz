@@ -2,20 +2,23 @@
 <html style="height: 100%">
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
+    <script src="/static_main/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body style="height: 100%; margin: 0">
-    <div id="container" style="height: 100%"></div>
-    <script type="text/javascript" src="../js_main/echarts.min.js"></script>
-    <script type="text/javascript" src="../js_main/echarts-gl.min.js"></script>
-    <script type="text/javascript" src="../js_main/ecStat.min.js"></script>
-    <script type="text/javascript" src="../js_main/dataTool.min.js"></script>
-    <script type="text/javascript" src="../js_main/china.js"></script>
-    <script type="text/javascript" src="../js_main/world.js"></script>
-    <script type="text/javascript" src="../js_main/bmap.min.js"></script>
-    <script type="text/javascript" src="../js_main/simplex.js"></script>    <script type="text/javascript">
+    <a href="/index.html" style="position: fixed; z-index: 300;"><i class="fa fa-home" style="font-size: 50px; color: lightskyblue;padding: 10px; "></i></a>
+    <div id="container" style="height: 100%; padding-top:10px;"></div>
+    <script type="text/javascript" src="/static_main/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/static_main/js/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="/static_main/js/ecStat.min.js"></script>
+    <script type="text/javascript" src="/static_main/js/dataTool.min.js"></script>
+    <script type="text/javascript" src="/static_main/js/china.js"></script>
+    <script type="text/javascript" src="/static_main/js/world.js"></script>
+    <script type="text/javascript" src="/static_main/js/bmap.min.js"></script>
+    <script type="text/javascript" src="/static_main/js/simplex.js"></script>
+    <script type="text/javascript">
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
         var app = {};
@@ -26,7 +29,8 @@
             myChart.hideLoading();
             myChart.setOption(option = {
                 title: {
-                    text: 'International Network Map'
+                    text: 'International Network Map',
+                    x: 'center'
                 },
                 animationDurationUpdate: 1500,
                 animationEasingUpdate: 'quinticInOut',
@@ -60,7 +64,7 @@
                         };
                     }),
                     label: {
-                        normal:{
+                        normal: {
                             position: 'right',
                             // show:true
                         }
