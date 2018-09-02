@@ -2,6 +2,7 @@
 import csv
 import random
 import json
+import math
 
 csvfile = open('2018-07-Domestic Exchange.csv', 'r')
 jsonfile = open('domestic.json', 'w')
@@ -9,80 +10,77 @@ reader = csv.DictReader(csvfile)
 nodes = []
 edges = []
 size_node = {}
-size_start = 2
+size_plus = 20
+size_start = 80
 
-source = [{"id": AS9931, "label": CAT-ISP},
-          {"id": AS7568, "label": CSL-IIG(CS Loxinfo) },
-          {"id": AS58430, "label": TCCT-IIG},
-          {"id": AS56309, "label": SiamData},
-          {"id": AS4765, "label": Pacific Internet},
-          {"id": AS4651, "label": CAT-IIG},
-          {"id": AS45796, "label": BB Connect-IIG(UIH / BEENET) },
-          {"id": AS45758, "label": Triple T Internet},
-          {"id": AS45629, "label": JasTel-IIG},
-          {"id": AS45458, "label": AWN-ISP(SBN)},
-          {"id": AS45430, "label": AWN-IIG(SBN)},
-          {"id": AS38794, "label": UIH(BeeNet)},
-          {"id": AS38566, "label": NTT(TH)},
-          {"id": AS38082, "label": TIG-IIG(TRUE)},
-          {"id": AS38040, "label": TOT-IIG},
-          {"id": AS24475, "label": ThaiREN},
-          {"id": AS24187, "label": KIRZ},
-          {"id": AS23884, "label": PROEN Internet},
-          {"id": AS134509, "label": 1-TO-ALL},
-          {"id": AS132876, "label": SYMC-IIG(Symphony)},
-          {"id": AS10089, "label": DTAC-IIG},
-          ]
+source = [
+    ["AS63529", "BKNIX (Bangkok Neutral Internet eXchange)"],
+    ["AS4652", "CAT-IX (Bangrak/ Nonthaburi)"],
+    ["AS45788", "BB Connect-IX (UIH/ BEENET)"],
+    ["AS45667", "TCCT-IX "],
+    ["AS45642", "JasTel-IX"],
+    ["AS45458", "AWN-IX (SBN)"],
+    ["AS45265", "CSL-IX"],
+    ["AS38081", "TIG-IX"],
+    ["AS37930", "TOT-IX"],
+    ["AS133543", "DTAC-IX"],
+    ["AS132880", "SYMC-IX"],
+]
+
+connect_type = {
+    "IPv4": "#82CF61",
+    "IPv6 Dual Stack": "#FFC94D",
+    "IPv6 Native": "#C371FC",
+    "Peering/ IPv6 Native": "#71FCE5"
+}
 
 colors = [
-    "#C91F37", "#DC3023", "#9D2933", "#CF000F", "#E68364",
-    "#F22613", "#CF3A24", "#C3272B", "#8F1D21", "#D24D57",
-    "#F08F907", "#F47983", "#DB5A6B", "#C93756", "#F4D03F",
-    "#FCC9B9", "#FFB3A7", "#F62459", "#F58F84", "#FFA400",
-    "#875F9A", "#5D3F6A", "#89729E", "#763568", "#E08A1E",
-    "#8D608C", "#A87CA0", "#5B3256", "#BF55EC", "#FFB61E",
-    "#8E44AD", "#9B59B6", "#BE90D4", "#4D8FAC", "#FAA945",
-    "#5D8CAE", "#22A7F0", "#19B5FE", "#59ABE3", "#48929B",
-    "#317589", "#89C4F4", "#4B77BE", "#1F4788", "#FFA631",
-    "#003171", "#044F67", "#264348", "#7A942E", "#FFB94E",
-    "#8DB255", "#5B8930", "#6B9362", "#407A52", "#E29C45",
-    "#006442", "#87D37C", "#26A65B", "#26C281", "#F9690E",
-    "#049372", "#2ABB9B", "#16A085", "#36D7B7", "#CA6924",
-    "#03A678", "#4DAF7C", "#D9B611", "#F3C13A", "#F5AB35",
-    "#F7CA18", "#E2B13C", "#A17917", "#F5D76E", "#95A5A6",
-    "#BFBFBF", "#F2F1EF", "#BDC3C7", "#ECF0F1", "#D2D7D3",
-    "#757D75", "#EEEEEE", "#ABB7B7", "#6C7A89"
+    "#99b433", "#00a300", "#1e7145", "#7e3878", "#603cba",
+    "#1d1d1d", "#00aba9", "#2d89ef", "#2b5797", "#e3a21a",
+    "#ee1111", "#b91d47", "#7F8C8D", "#76D7C4", 
 ]
 colors_count = len(colors)
 
+for row in source:
+    node = {
+        "color": colors[random.randint(0, colors_count-1)],
+        "label": row[1],
+        "x": random.randint(-1000, 1000),
+        "y": random.randint(-1000, 1000),
+        "id": row[0],
+    }
+    nodes.append(node)
+    size_node[row[0]] = size_start
+
+i = 1
 for row in reader:
     if row['ASN'] not in size_node:
         node = {
             "color": colors[random.randint(0, colors_count-1)],
             "label": row['Name'],
-            "attributes": {},
-            "x": random.randint(-1000,1000),
-            "y": random.randint(-1000,1000),
+            "x": random.randint(-1000, 1000),
+            "y": random.randint(-1000, 1000),
             "id": row['ASN'],
         }
         nodes.append(node)
-        size_node[row['ASN']] = 6
+        size_node[row['ASN']] = size_start
     else:
-        size_node[row['ASN']] += size_start
+        size_node[row['ASN']] += size_plus
     if row['ASN-Source'] not in size_node:
-        size_node[row['ASN-Source']] = size_start
+        size_node[row['ASN-Source']] = size_plus
     else:
-        size_node[row['ASN-Source']] += size_start
+        size_node[row['ASN-Source']] += size_plus
     edge = {
         "sourceID": row['ASN-Source'],
-        "attributes": {},
         "targetID": row['ASN'],
-        "size": float(row['Bandwidth'])/10,
+        "width": math.sqrt(float(row['Bandwidth'])),
+        "color": connect_type[row['Connectivity Type']],
+        "label": row['Connectivity Type'],
     }
     edges.append(edge)
 
 for node in nodes:
-    node["size"] = size_node[node['id']]
+    node["size"] = math.sqrt(size_node[node['id']])
 
 data = {
     "nodes": nodes,

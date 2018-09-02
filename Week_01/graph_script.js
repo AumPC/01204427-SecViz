@@ -15,8 +15,16 @@ $.getJSON('convert/domestic.json', function (json) {
         animationEasingUpdate: 'quinticInOut',
         series: [{
             type: 'graph',
-            layout: 'none',
-            // progressiveThreshold: 700,
+            // layout: 'none',
+            progressiveThreshold: 700,
+            layout: 'force',
+            animation: false,
+            force: {
+                // initLayout: 'circular'
+                // gravity: 0
+                repulsion: 2000,
+                edgeLength: 700
+            },
             data: json.nodes.map(function (node) {
                 return {
                     x: node.x,
@@ -24,6 +32,7 @@ $.getJSON('convert/domestic.json', function (json) {
                     id: node.id,
                     name: node.label,
                     symbolSize: node.size,
+                    draggable: true,
                     itemStyle: {
                         normal: {
                             color: node.color,
@@ -39,9 +48,30 @@ $.getJSON('convert/domestic.json', function (json) {
             edges: json.edges.map(function (edge) {
                 return {
                     source: edge.sourceID,
-                    target: edge.targetID
+                    target: edge.targetID,
+                    value: 100,
+                    lineStyle: {
+                        width: edge.width,
+                        // color: edge.color
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            color: edge.color
+                        },
+                    }
                 };
             }),
+            tooltip: {},
+            toolbox: {
+                feature: {
+                    dataZoom: {}
+                },
+                left:"center",
+                z:1000
+            },
+            dataZoom: {
+                type: 'inside'
+            },
             label: {
                 position: 'right',
                 formatter: '{b}'
@@ -51,11 +81,6 @@ $.getJSON('convert/domestic.json', function (json) {
                 width: 0.5,
                 curveness: 0.3,
                 opacity: 0.7
-            },
-            emphasis: {
-                lineStyle: {
-                    width: 9
-                }
             },
             roam: true,
             focusNodeAdjacency: true,
@@ -84,8 +109,16 @@ $.getJSON('convert/international.json', function (json) {
         animationEasingUpdate: 'quinticInOut',
         series: [{
             type: 'graph',
-            layout: 'none',
-            // progressiveThreshold: 700,
+            // layout: 'none',
+            progressiveThreshold: 300,
+            layout: 'force',
+            animation: false,
+            force: {
+                // initLayout: 'circular'
+                // gravity: 0
+                repulsion: 1000,
+                edgeLength: 300
+            },
             data: json.nodes.map(function (node) {
                 return {
                     x: node.x,
@@ -93,6 +126,7 @@ $.getJSON('convert/international.json', function (json) {
                     id: node.id,
                     name: node.label,
                     symbolSize: node.size,
+                    draggable: true,
                     itemStyle: {
                         normal: {
                             color: node.color,
@@ -108,7 +142,17 @@ $.getJSON('convert/international.json', function (json) {
             edges: json.edges.map(function (edge) {
                 return {
                     source: edge.sourceID,
-                    target: edge.targetID
+                    target: edge.targetID,
+                    value: 100,
+                    lineStyle: {
+                        width: edge.width,
+                        // color: edge.color
+                    },
+                    emphasis: {
+                        lineStyle: {
+                            color: edge.color
+                        },
+                    }
                 };
             }),
             label: {
