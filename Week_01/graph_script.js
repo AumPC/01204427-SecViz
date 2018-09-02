@@ -56,6 +56,7 @@ $.getJSON('convert/domestic.json', function (json) {
                     },
                     emphasis: {
                         lineStyle: {
+                            width: edge.width,
                             color: edge.color
                         },
                     }
@@ -105,19 +106,19 @@ $.getJSON('convert/international.json', function (json) {
             text: 'International Network Map',
             x: 'center'
         },
-        animationDurationUpdate: 1500,
+        animationDurationUpdate: 500,
         animationEasingUpdate: 'quinticInOut',
         series: [{
             type: 'graph',
             // layout: 'none',
-            progressiveThreshold: 300,
+            progressiveThreshold: 200,
             layout: 'force',
             animation: false,
             force: {
                 // initLayout: 'circular'
                 // gravity: 0
-                repulsion: 1000,
-                edgeLength: 300
+                repulsion: 400,
+                edgeLength: 100
             },
             data: json.nodes.map(function (node) {
                 return {
@@ -150,6 +151,7 @@ $.getJSON('convert/international.json', function (json) {
                     },
                     emphasis: {
                         lineStyle: {
+                            width: edge.width,
                             color: edge.color
                         },
                     }

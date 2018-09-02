@@ -40,7 +40,7 @@ connect_type = {
     "IPv4": "#82CF61",
     "IPv6 Dual Stack": "#FFC94D",
     "Peering": "#C371FC",
-    "Peering/IPv6 Dual Stack": "#71FCE5",
+    "Peering/IPv6 Dual Stack": "#67A7D1",
     "Peering/IPv6 Tunneling": "#FF6B4D",
     "Transit": "#FF77D4",
     "Transit/IPv6 Dual Stack": "#B3ABC2",
