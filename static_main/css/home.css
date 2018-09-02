@@ -40,10 +40,11 @@
 .topnav {
     overflow: hidden;
     position: fixed;
-    background-color: rgb(0, 128, 64, 0.7);
+    background-color: rgb(0, 128, 64, 1);
     left: 0;
     right: 0;
     top: 0;
+    z-index: 300;
 }
 
 .topnav a {
@@ -52,16 +53,16 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 1.1vw;
+    font-size: 1vw;
 }
 
 .topnav a:hover {
-    background-color: rgb(0, 128, 64, 1);
+    background-color: rgb(4, 90, 47, 1);
     color: black;
 }
 
 .topnav a.active {
-    background-color: rgb(0, 128, 64, 1);
+    background-color: rgb(04, 90, 47, 1);
     color: white;
 }
 
@@ -81,14 +82,14 @@
 }
 
 .panel-body {
-    font-size: 1.25vw;
+    font-size: 1.1vw;
     padding: 15px;
     color: #3c763d;
 
 }
 
 .panel-heading {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 20px;

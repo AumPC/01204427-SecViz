@@ -5,27 +5,48 @@
     <meta charset="utf-8">
     <script src="/static_main/js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static_main/css/home.css">
+    <link rel="stylesheet" href="/static_main/css/Week_02.css">
 </head>
 
-<body>
-    <a href="/index.html" style="position: fixed; z-index: 300;"><i class="fa fa-home" style="font-size: 50px; color: lightskyblue;padding: 10px; " ></i></a>
-    <div class="row">
-        <div class="graph" id="user_log"></div>
+<body style="font-family: Comic sans MS">
+    <div class="bg">
+        <!-- <img class="theme" src="/static_main/images/theme.jpg"> -->
     </div>
-    <div class="row">
-        <div class="graph" id="ip_log"></div>
+    <div class="topnav">
+        <a href="/index.html"><i class="fa fa-home" style="font-size: 1.4vw; color: white;"></i></a>
+        <a href="#news">Network Graph</a>
+        <a class="active" href="/Week_02/graph_show.html">Login Log</a>
+        <a href="#about">Web Log</a>
     </div>
-    <div class="row">
-        <div class="graph" id="login_log"></div>
-    </div>
-    <div class="row">
-        <div class="graph" id="route_ip_usage"></div>
-    </div>
-    <div class="row">
-        <div class="graph" id="login_server"></div>
-    </div>
-    <div class="row">
-        <div class="graph" id="login_activity"></div>
+
+    <div class="start_contend">
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="login_activity"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="login_server"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="route_ip_usage"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="ip_log"></div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="user_log"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="login_log"></div>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -33,8 +54,10 @@
 
 <style>
     .row {
-        height: 500px;
-        padding-bottom: 30px
+        height: 600px;
+        padding-bottom: 30px;
+        width: 100%;
+        display: table;
     }
 
     .graph {

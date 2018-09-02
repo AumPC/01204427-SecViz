@@ -5,7 +5,7 @@ option = null;
 // $.get('user_log.json', function (data) {
 //     console.log(data);
 myChart4.setOption(option = {
-    color: ['#2ECC71', '#E74C3C', '#5DADE2'],
+    color: ['#2ECC71', '#FF9E00', '#E74C3C'],
     title: {
         text: 'RouteIPUsage',
         x: 'center'
@@ -92,7 +92,7 @@ option = null;
 // $.get('user_log.json', function (data) {
 //     console.log(data);
 myChart5.setOption(option = {
-    color: ['#5DADE2'],
+    color: ['#2ECC71'],
     title: {
         text: 'Login Server',
         x: 'center'
@@ -109,18 +109,24 @@ myChart5.setOption(option = {
         bottom: '3%',
         containLabel: true
     },
-    yAxis: {
+    xAxis: {
         type: 'value',
         boundaryGap: [0, 0.01]
     },
-    xAxis: {
+    yAxis: {
         type: 'category',
-        data: ['158.108.218.201', '158.108.218.202', '158.108.218.203', '158.108.218.204', '158.108.218.205', '158.108.218.206', '158.108.218.207', '158.108.218.208', '158.108.218.209', '158.108.218.210', '158.108.218.211', '158.108.218.212', ]
+        data: ['158.108.218.211', '158.108.218.209', '158.108.218.203', '158.108.218.208', '158.108.218.205', '158.108.218.206', '158.108.218.207', '158.108.218.210', '158.108.218.202', '158.108.218.201', '158.108.218.204', '158.108.218.212', ]
     },
     series: [{
         name: 'Login Server',
         type: 'bar',
-        data: [664, 643, 553, 665, 570, 570, 589, 567, 548, 592, 523, 673]
+        data: [523,548,553,567,570,570,589,592,643,644,665,673,],
+        label: {
+            normal: {
+                show: true,
+                position: 'inside'
+            }
+        },
     }]
 });
 // });;
@@ -141,7 +147,7 @@ option = null;
 // $.get('user_log.json', function (data) {
 //     console.log(data);
 myChart6.setOption(option = {
-    color: ['#2ECC71', '#E74C3C', '#5DADE2', '#F4D03F'],
+    color: ['#2ECC71', '#E74C3C', '#5DADE2', '#FF9E00'],
     title: {
         text: 'Login Activity',
         x: 'center'

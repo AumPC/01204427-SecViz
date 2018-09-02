@@ -143,6 +143,9 @@ $.get('login_log.json', function (data) {
         toolbox: {
             // left: 'center',
             feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
                 dataZoom: {
                     yAxisIndex: 'none'
                 },
@@ -218,6 +221,9 @@ $.get('ip_log.json', function (data) {
         toolbox: {
             // left: 'center',
             feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
                 dataZoom: {
                     yAxisIndex: 'none'
                 },
@@ -230,7 +236,7 @@ $.get('ip_log.json', function (data) {
         }, {
             type: 'inside'
         }],
-        color: ['#2ECC71', '#F4D03F', '#E74C3C'],
+        color: ['#2ECC71', '#FF9E00', '#E74C3C'],
         series: [{
                 name: 'IPv4',
                 type: 'line',

@@ -1,0 +1,16 @@
+.panel-visualize {
+    background-color: rgb(255, 255, 255, 0.7);
+    border: 1px solid transparent;
+    border-radius: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-color: #d6e9c6;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+
+    width: 48%;
+    height: 100%;
+    float: left;
+
+    padding-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
