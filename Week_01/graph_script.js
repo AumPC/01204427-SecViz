@@ -1,12 +1,12 @@
 var dom = document.getElementById("domestic");
 var myChart = echarts.init(dom);
 var app = {};
-option = null;
+option1 = null;
 myChart.showLoading();
 $.getJSON('convert/domestic.json', function (json) {
     console.log(json.nodes.length);
     myChart.hideLoading();
-    myChart.setOption(option = {
+    myChart.setOption(option1 = {
         title: {
             text: 'Domestic Network Map',
             x: 'center'
@@ -17,7 +17,7 @@ $.getJSON('convert/domestic.json', function (json) {
             type: 'graph',
             // layout: 'none',
             progressiveThreshold: 700,
-            layout: 'force',
+            layout: 'none',
             animation: false,
             force: {
                 // initLayout: 'circular'
@@ -88,20 +88,20 @@ $.getJSON('convert/domestic.json', function (json) {
         }]
     }, true);
 });;
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
+if (option1 && typeof option1 === "object") {
+    myChart.setOption(option1, true);
 }
 
 
 var dom = document.getElementById("international");
 var myChart2 = echarts.init(dom);
 var app = {};
-option = null;
+option2 = null;
 myChart2.showLoading();
 $.getJSON('convert/international.json', function (json) {
     console.log(json.nodes.length);
     myChart2.hideLoading();
-    myChart2.setOption(option = {
+    myChart2.setOption(option2 = {
         title: {
             text: 'International Network Map',
             x: 'center'
@@ -112,7 +112,7 @@ $.getJSON('convert/international.json', function (json) {
             type: 'graph',
             // layout: 'none',
             progressiveThreshold: 200,
-            layout: 'force',
+            layout: 'none',
             animation: false,
             force: {
                 // initLayout: 'circular'
@@ -179,6 +179,20 @@ $.getJSON('convert/international.json', function (json) {
         }]
     }, true);
 });;
-if (option && typeof option === "object") {
-    myChart2.setOption(option, true);
+if (option2 && typeof option2 === "object") {
+    myChart2.setOption(option2, true);
+}
+
+
+
+function changeTypeDomestic() {
+    graphType = document.getElementById("graphTypeDomestic").value;
+    option1.series['0'].layout = graphType;
+    myChart.setOption(option1, true);
+}
+
+function changeTypeInter() {
+    graphType = document.getElementById("graphTypeInter").value;
+    option2.series['0'].layout = graphType;
+    myChart2.setOption(option2, true);
 }

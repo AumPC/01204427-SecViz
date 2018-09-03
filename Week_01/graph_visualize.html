@@ -23,9 +23,40 @@
     <div class="start_contend">
         <div class="row">
             <div class="panel-visualize">
+                <div style="text-align: right; padding-right: 10px">
+                    GRAPH TYPE :
+                    <select id="graphTypeDomestic" class="btn btn-light btn-lg" onchange="changeTypeDomestic()">
+                        <option value="none">None
+                        <option value="circular">Circular
+                        <option value="force">Force
+                    </select>
+                </div>
+                <div style="text-align: center;"> Color Line :
+                    <span style="color: #82CF61">"IPv4"</span>,
+                    <span style="color: #FFC94D">"IPv6 Dual Stack"</span>,
+                    <span style="color: #C371FC">"IPv6 Native"</span>,
+                    <span style="color: #67A7D1">"Peering/ IPv6 Native"</span>
+                </div>
                 <div class="graph" id="domestic"></div>
             </div>
             <div class="panel-visualize">
+                <div style="text-align: right; padding-right: 10px; padding-bottom: 5px">
+                    GRAPH TYPE :
+                    <select id="graphTypeInter" class="btn btn-light btn-lg" onchange="changeTypeInter()">
+                        <option value="none">None
+                        <option value="circular">Circular
+                        <option value="force">Force
+                    </select>
+                </div>
+                <div style="text-align: center; padding-bottom: 5px"> Color Line :
+                    <span style="color: #82CF61">"IPv4"</span>,
+                    <span style="color: #FFC94D">"IPv6 Dual Stack"</span>,
+                    <span style="color: #C371FC">"Peering"</span>,
+                    <span style="color: #67A7D1">"Peering/IPv6 Dual Stack"</span>,
+                    <span style="color: #FF6B4D">"Peering/IPv6 Tunneling"</span>,
+                    <span style="color: #FF77D4">"Transit"</span>,
+                    <span style="color: #B3ABC2">"Transit/IPv6 Dual Stack"</span>
+                </div>
                 <div class="graph" id="international"></div>
             </div>
         </div>
