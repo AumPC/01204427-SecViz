@@ -213,11 +213,19 @@ $.get('ip_log.json', function (data) {
         xAxis: {
             data: Object.keys(data)
         },
-        yAxis: {
-            splitLine: {
-                show: false
+        yAxis: [
+            {
+                type: 'value',
+                name: 'ipv4/dual stack',
+
+            },
+            {
+                type: 'value',
+                max: 5,
+                min:0,
+                
             }
-        },
+        ],
         toolbox: {
             // left: 'center',
             feature: {
@@ -247,6 +255,7 @@ $.get('ip_log.json', function (data) {
             {
                 name: 'IPv6',
                 type: 'line',
+                yAxisIndex: 1,
                 data: Object.keys(data).map(function (key, index) {
                     return data[key]['ipv6'];
                 }),
