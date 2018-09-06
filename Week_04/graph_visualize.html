@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <script src="/static_main/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static_main/css/home.css">
+    <link rel="stylesheet" href="/static_main/css/Week_03.css">
+</head>
+
+<body style="font-family: Comic sans MS; height: 100%;">
+    <div class="bg">
+        <!-- <img class="theme" src="/static_main/images/theme.jpg"> -->
+    </div>
+    <div class="topnav">
+        <a href="/index.html"><i class="fa fa-home" style="font-size: 1.4vw; color: white;"></i></a>
+        <a href="/Week_01/graph_visualize.html">Network Graph</a>
+        <a class="active" href="/Week_03/graph_visualize.html">Login Log</a>
+        <a href="#about">Web Log</a>
+    </div>
+
+    <div class="start_contend">
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="login_activity"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="login_server"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="route_ip_usage"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="ip_log"></div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="panel-visualize">
+                <div class="graph" id="user_log"></div>
+            </div>
+            <div class="panel-visualize">
+                <div class="graph" id="login_log"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="/static_main/js/echarts.min.js"></script>
+<script type="text/javascript" src="/static_main/js/echarts-gl.min.js"></script>
+<script type="text/javascript" src="/static_main/js/ecStat.min.js"></script>
+<script type="text/javascript" src="/static_main/js/dataTool.min.js"></script>
+<script type="text/javascript" src="/static_main/js/china.js"></script>
+<script type="text/javascript" src="/static_main/js/world.js"></script>
+<script type="text/javascript" src="/static_main/js/bmap.min.js"></script>
+<script type="text/javascript" src="/static_main/js/simplex.js"></script>
+<script type="text/javascript" src="./graph_script.js"></script>
+
+</html>

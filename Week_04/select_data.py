@@ -6,7 +6,7 @@ path = './data/*.txt'
 files = glob.glob(path)
 
 jsonfile = open('web_log_tree.json', 'w')
-jsonfile2 = open('file_tyep_tree.json', 'w')
+jsonfile2 = open('filetype_tree.json', 'w')
 
 hostname_egress = {}
 hostname_ingress = {}
@@ -14,6 +14,7 @@ ingress = 0
 egress = 0
 
 type_egress = {"Undefine":0}
+type_ingress = {"Undefine":0}
 
 for filename in files:
     time = filename.split('web-anon-')[1].split('.0')[0]
@@ -51,11 +52,23 @@ for filename in files:
             hostname_ingress[col[16]][time] += 1
             hostname_ingress[col[16]]['total'] += 1
 
+            temp = col[17].split('?')[0].split(';')[0].split('/')[-1].split('.')
+            if(len(temp) > 1):
+                if '&' in temp[-1] or '=' in temp[-1] or ':' in temp[-1] or '%' in temp[-1]:
+                    type_ingress["Undefine"] += 1
+                else :
+                    if temp[-1] not in type_ingress:
+                        type_ingress[temp[-1]] = 0
+                    type_ingress[temp[-1]] += 1
+            else :
+                type_ingress["Undefine"] += 1
+
 data = sorted(hostname_egress.items(), key=lambda k: k[1]['total'])
 hostname_egress_json = []
 hostname_ingress_json = []
 
-type_egress_json = {}
+type_egress_json = []
+type_ingress_json = []
 
 for key, value in sorted(hostname_egress.items(), key=lambda k: k[1]['total'], reverse=True):
     data = { "name": key, "value": hostname_egress[key]['total'], "children":[]}
@@ -64,17 +77,12 @@ for key, value in sorted(hostname_ingress.items(), key=lambda k: k[1]['total'], 
     data = { "name": key, "value": hostname_ingress[key]['total'], "children":[]}
     hostname_ingress_json.append(data)
 
-# for key, value in sorted(type_egress.items(), key=lambda k: k[1]['total'], reverse=True):
-#     type_egress_json[key] = value
-# for key, value in sorted(hostname_ingress.items(), key=lambda k: k[1]['total'], reverse=True):
-#     hostname_ingress_json[key] = value
-
-# for host in hostname_egress_json:
-#     temp = hostname_egress_json[host]
-#     data = {}
-#     data[]
-#     print(temp)
-
+for key, value in sorted(type_egress.items(), key=lambda k: k[1], reverse=True):
+    data = { "name": key, "value": type_egress[key], "children":[]}
+    type_egress_json.append(data)
+for key, value in sorted(type_ingress.items(), key=lambda k: k[1], reverse=True):
+    data = { "name": key, "value": type_ingress[key], "children":[]}
+    type_ingress_json.append(data)
 
 print("Egress" ,egress)
 print("INgress", ingress)
@@ -84,5 +92,9 @@ data = {
     "hostname_ingress": hostname_ingress_json
 }
 
+data2 = {
+    "filetype_egress": type_egress_json,
+    "filetype_ingress": type_ingress_json
+}
 json.dump(data, jsonfile)
-json.dump(type_egress, jsonfile2)
+json.dump(data2, jsonfile2)
