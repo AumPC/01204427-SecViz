@@ -62,6 +62,7 @@ $.get('user_irr.json', function (data) {
     console.log(data);
     var formatUtil = echarts.format;
     myChart2.setOption(option = {
+        color: ['#254117', '#306754', '#347235', '#4E9258', '#6AA121', '#6CBB3C', '#6CC417', '#54C571'],
         title: {
             text: 'Irregular Request User',
             x: 'center'
@@ -70,6 +71,7 @@ $.get('user_irr.json', function (data) {
             formatter: function (info) {
                 var value = info.value;
                 return [
+                    '<div>' + info.name+ '</div>',
                     'Percentage: ' + formatUtil.addCommas(value),
                 ].join('');
             }
@@ -103,6 +105,7 @@ $.get('web_log_tree.json', function (data) {
     console.log(data);
     var formatUtil = echarts.format;
     myChart3.setOption(option = {
+        color: ['#254117', '#306754', '#347235', '#4E9258', '#6AA121', '#6CBB3C', '#6CC417', '#54C571'],
         title: {
             text: 'Egress Hostname',
             x: 'center'
@@ -111,6 +114,7 @@ $.get('web_log_tree.json', function (data) {
             formatter: function (info) {
                 var value = info.value;
                 return [
+                    '<div>' + info.name+ '</div>',
                     'Count: ' + formatUtil.addCommas(value),
                 ].join('');
             }
@@ -119,7 +123,7 @@ $.get('web_log_tree.json', function (data) {
             name: 'Egress Hostname',
             type: 'treemap',
             data: data.hostname_egress,
-            visibleMin: 100,
+            visibleMin: 1000,
             label: {
                 show: true,
                 formatter: '{b}'
@@ -143,6 +147,7 @@ $.get('web_log_tree.json', function (data) {
     console.log(data);
     var formatUtil = echarts.format;
     myChart4.setOption(option = {
+        color: ['#254117', '#306754', '#347235', '#4E9258', '#6AA121', '#6CBB3C', '#6CC417', '#54C571'],
         title: {
             text: 'Ingress Hostname',
             x: 'center'
@@ -151,6 +156,7 @@ $.get('web_log_tree.json', function (data) {
             formatter: function (info) {
                 var value = info.value;
                 return [
+                    '<div>' + info.name+ '</div>',
                     'Count: ' + formatUtil.addCommas(value),
                 ].join('');
             }
@@ -159,7 +165,7 @@ $.get('web_log_tree.json', function (data) {
             name: 'Ingress Hostname',
             type: 'treemap',
             data: data.hostname_ingress,
-            visibleMin: 100,
+            visibleMin: 500,
             label: {
                 show: true,
                 formatter: '{b}'
@@ -183,6 +189,7 @@ $.get('filetype_tree.json', function (data) {
     console.log(data);
     var formatUtil = echarts.format;
     myChart5.setOption(option = {
+        color: ['#254117', '#306754', '#347235', '#4E9258', '#6AA121', '#6CBB3C', '#6CC417', '#54C571'],
         title: {
             text: 'Egress FileType',
             x: 'center'
@@ -191,6 +198,7 @@ $.get('filetype_tree.json', function (data) {
             formatter: function (info) {
                 var value = info.value;
                 return [
+                    '<div>' + info.name+ '</div>',
                     'Count: ' + formatUtil.addCommas(value),
                 ].join('');
             }
@@ -199,7 +207,7 @@ $.get('filetype_tree.json', function (data) {
             name: 'Egress FileType',
             type: 'treemap',
             data: data.filetype_egress,
-            visibleMin: 100,
+            visibleMin: 800,
             label: {
                 show: true,
                 formatter: '{b}'
@@ -223,6 +231,7 @@ $.get('filetype_tree.json', function (data) {
     console.log(data);
     var formatUtil = echarts.format;
     myChart6.setOption(option = {
+        color: ['#254117', '#306754', '#347235', '#4E9258', '#6AA121', '#6CBB3C', '#6CC417', '#54C571'],
         title: {
             text: 'Ingress FileType',
             x: 'center'
@@ -231,6 +240,7 @@ $.get('filetype_tree.json', function (data) {
             formatter: function (info) {
                 var value = info.value;
                 return [
+                    '<div>' + info.name+ '</div>',
                     'Count: ' + formatUtil.addCommas(value),
                 ].join('');
             }
