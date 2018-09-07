@@ -12,11 +12,13 @@ js = []
 total = 0
 
 for row in reader:
-    data = {}
-    total += int(row['count'])
-    data['name'] = row['name']
-    data['value'] = int(row['count'])
-    js.append(data)
+    if row['name'] != '-':
+        data = {}
+        total += int(row['count'])
+        data['name'] = row['name']
+        data['value'] = int(row['count'])
+        js.append(data)
+    else: print(row['count'])
 
 for j in js:
     j['value'] = j['value']/total

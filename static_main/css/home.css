@@ -9,6 +9,7 @@
     margin-left: 10px;
     margin-right: 10px;
     height: 100%;
+    width: 100%;
 }
 
 .bg {
@@ -99,4 +100,9 @@
     background-color: rgb(167, 206, 151, 0.6);
     border-color: #d6e9c6;
     text-align: center
+}
+
+ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
