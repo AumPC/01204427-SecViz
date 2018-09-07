@@ -36,12 +36,12 @@ myChart1.setOption(option = {
         name: 'Irregular Request',
         type: 'bar',
         data: ['5790', '5193', '6195', '5829', '5839', '6253', '5736', '8454', '5447', '5235', '5630', '6138', '5411', '5510', '5101', '5587', '5701', '5527', '5241', '5000', '5205', '4925', '4179', '4649', '4481', '4882', '4856', '4798', '4688', '4739', '4755', '4768', '4452', '4509', '4336', '4049', '3412', '3262', '3340', '3612', '3041', '3071', '3001', '3136', '3156', '3166', '2962', '3193', '3107', '3032', '2614', '2772', '2687', '2664', '2663', '2707', '2667', '2977', '2941', '2564'],
-        label: {
-            normal: {
-                show: true,
-                position: 'inside'
-            }
-        },
+        // label: {
+        //     normal: {
+        //         show: true,
+        //         position: 'inside'
+        //     }
+        // },
     }]
 });
 // });;
@@ -337,6 +337,7 @@ $.get('topmost_timeline.json', function (data) {
         //     orient: 'vertical',
         //     parallelAxisIndex: [0]
         // },
+        color: ['#047C30'],
         parallelAxis: [{
                 dim: 0,
                 name: schema[0].text,
@@ -420,6 +421,7 @@ $.get('topmost_timeline.json', function (data) {
         series: [{
             name: 'Topmost Request User',
             type: 'parallel',
+            smooth: true,            
             lineStyle: lineStyle,
             data: dataBJ
         }, ]
